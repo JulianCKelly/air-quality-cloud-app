@@ -1,19 +1,121 @@
-## Air_Quality_in_the_Coud
-Air Quality in the Cloud is a Flask-powered web app displaying real-time air quality data from the Open AQ API with filtering capabilities.
+# 🌤️ Air Quality Cloud Dashboard  
+*A Flask web application for querying, storing, and displaying real-time air quality data from the OpenAQ API.*
 
-# Introduction
-During the sprint challenge, I built a Flask-powered web application that displayed data about air quality. I used various tools, including Flask, Flask-SQLAlchemy, and Requests, to create the application and interact with the Open AQ API to retrieve air quality measurements.
+---
 
-# Part 1 - If I could put Flask in a File
-I set up the basic structure of the Flask web application by creating a new file called aq_dashboard.py. I defined a root route that returned a placeholder message.
+## **Overview**
+This project is a Flask-powered web application that retrieves real-time air quality measurements from the OpenAQ API, stores them locally using SQLAlchemy, and displays potentially risky PM2.5 readings in a simple dashboard.
 
-# Part 2 - Breathe Easy with OpenAQ
-To fetch air quality data, I utilized the provided openaq.py file, which allowed me to communicate with the Open AQ API. I successfully pulled data from the API and integrated it into the application.
+It demonstrates:
 
-# Part 3 - That Data Belongs In A Model!
-I used Flask-SQLAlchemy to create a Record model to store air quality data in a local database. I defined the necessary table columns and implemented the __repr__ method to display the data in a user-friendly manner.
+- REST API integration  
+- Flask routing and templating  
+- SQLite database modeling with SQLAlchemy  
+- Filtering and serving real-time environmental data  
+- Basic dashboard logic for environmental analytics  
 
-# Part 4 - Dashboard to the Finish
-In the final part, I modified the main route to query the database for "potentially risky" PM 2.5 data. I filtered the results and displayed them in the web application's dashboard.
+---
 
-The Air Quality in the Cloud web application was fully functional, offering real-time air quality data and historical records to users.
+## **Features**
+
+### ✅ **Live Data Retrieval**
+Pulls real-time air quality data (e.g., PM2.5) from the OpenAQ API.
+
+### ✅ **Database Integration**
+Stores retrieved measurements locally using **Flask-SQLAlchemy**, enabling:
+
+- persistence  
+- filtering  
+- historical querying  
+
+### ✅ **Custom Data Model**
+The `Record` model defines:
+
+- **location**  
+- **parameter**  
+- **value**  
+- **timestamp**  
+
+with a clean `__repr__` for debugging and introspection.
+
+### ✅ **Risk-Based Dashboard**
+The main route queries the database for **PM2.5 readings above a risky threshold** and serves them through a lightweight dashboard page.
+
+---
+
+## **Tech Stack**
+
+- **Flask** (app framework)  
+- **Flask-SQLAlchemy** (ORM + SQLite)  
+- **Requests** (OpenAQ API calls)  
+- **OpenAQ API** (https://docs.openaq.org/)  
+- **SQLite** for local database storage  
+
+---
+
+## **Project Structure**
+
+```
+air-quality-cloud-app/
+│
+├── aq_dashboard.py        # Main Flask application
+├── openaq.py              # OpenAQ API helper module
+├── models.py              # SQLAlchemy model(s)
+├── requirements.txt       # Python dependencies
+├── README.md              # Project documentation
+│
+└── instance/
+    └── air_quality.sqlite # Local SQLite database (auto-created)
+```
+
+---
+
+## **How It Works**
+
+1. `openaq.py` fetches measurements from the OpenAQ API  
+2. Data is validated and stored in the `Record` model  
+3. Flask routes query the database for high-risk PM2.5 readings  
+4. Results are displayed in a dashboard webpage  
+
+The app can be extended with charts, location filters, health-risk scoring, or cloud deployment.
+
+---
+
+## **Running the App**
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the Flask app
+export FLASK_APP=aq_dashboard.py
+flask run
+```
+
+Then visit:  
+**http://127.0.0.1:5000**
+
+---
+
+## **Next Steps & Extensions**
+
+Potential upgrades:
+
+- Add a full dashboard UI (Plotly Dash, Bootstrap, or HTMX)
+- Deploy to Render / Railway / Azure App Service
+- Add cron-like scheduled ingestion jobs
+- Expand the database schema for multi-parameter tracking
+- Integrate historical charts & trends
+
+---
+
+## **Summary**
+This project showcases full-stack data workflow skills:
+
+- API ingestion  
+- Data modeling  
+- Database persistence  
+- Backend routing  
+- Live analytic filtering  
+
+It represents foundational data engineering + applied analytics in a clean, approachable Flask application.
