@@ -1,4 +1,4 @@
-# 🌤️ Air Quality Cloud Dashboard  
+# Air Quality Cloud Dashboard  
 *A Flask web application for querying, storing, and displaying real-time air quality data from the OpenAQ API.*
 
 ---
@@ -18,17 +18,17 @@ It demonstrates:
 
 ## **Features**
 
-### ✅ **Live Data Retrieval**
+### **Live Data Retrieval**
 Pulls real-time air quality data (e.g., PM2.5) from the OpenAQ API.
 
-### ✅ **Database Integration**
+### **Database Integration**
 Stores retrieved measurements locally using **Flask-SQLAlchemy**, enabling:
 
 - persistence  
 - filtering  
 - historical querying  
 
-### ✅ **Custom Data Model**
+### **Custom Data Model**
 The `Record` model defines:
 
 - **location**  
@@ -38,7 +38,7 @@ The `Record` model defines:
 
 with a clean `__repr__` for debugging and introspection.
 
-### ✅ **Risk-Based Dashboard**
+### **Risk-Based Dashboard**
 The main route queries the database for **PM2.5 readings above a risky threshold** and serves them through a lightweight dashboard page.
 
 ---
